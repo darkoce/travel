@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="replace/header :: common-header" />
+
+<body>
+
+<div th:replace="replace/header :: navbar" />
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('/img/showantenna.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-heading">
+                    <h1 th:text="@{'Pogledajte statistiku'}">Podaci o putu</h1>
+                    <h2 class="subheading">Informacije o putu.</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <a class="btn btn-primary" th:href="@{'/travelslist'}">Nazad</a>
+        <hr/>
+        <div class="alert alert-warning animated bounceInRight" role="alert" th:if="${msg}" th:text="${msg}">Nema rezultata</div>
+        <form th:object="${helper}" th:action="@{/travelsstats}"
+              method="post">
+            <div class="control-group">
+                <div class="" style="color:#495057;font-size: 1.1em;opacity: .8;">
+                    <label>početni period:</label>
+                </div>
+                <div
+                        class="form-group col-xs-12 floating-label-form-group controls">
+                    <label>početni period: </label> <input type="number"
+                                                             class="form-control" placeholder="201511" th:name="start"
+                                                             th:field="${helper.start}" id="start" required
+                                                             data-validation-required-message="Unesite početni datum.">
+                    <p class="help-block text-danger"></p>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="" style="color:#495057;font-size: 1.1em;opacity: .8;">
+                    <label>Krajnji period</label>
+                </div>
+                <div
+                        class="form-group col-xs-12 floating-label-form-group controls">
+                    <label>Krajnji period: </label> <input type="number"
+                                                             class="form-control" placeholder="201811" th:name="finish"
+                                                             th:field="${helper.finish}" id="finish" required
+                                                             data-validation-required-message="Unesite krajnji datum.">
+                    <p class="help-block text-danger"></p>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                    <label>Destinacija: </label> <input type="text"
+                                                     class="form-control" placeholder="Overseas visitor" th:name="country"
+                                                     th:field="${helper.country}" id="country" required
+                                                     data-validation-required-message="Potreban je podatak.">
+                    <p class="help-block text-danger"></p>
+                </div>
+            </div>
+            <div id="success"></div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"
+                        id="sendMessageButton">Kreiraj statistiku</button>
+                <!-- <button type="button" class="btn btn-danger" >Odustani</button> -->
+            </div>
+
+        </form>
+
+        </div>
+</article>
+
+<hr>
+
+<div th:replace="replace/header :: footer"/>
+
+</body>
+
+</html>

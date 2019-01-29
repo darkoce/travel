@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="replace/header :: common-header" />
+
+<body>
+
+	<div th:replace="replace/header :: navbar" />
+
+	<!-- Page Header -->
+	<header class="masthead"
+		style="background-image: url('../img/adding.jpg')">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-10 mx-auto">
+					<div class="page-heading">
+						<h1 style="color: #F5B051">Dodajte novo putovanje</h1>
+						<span class="subheading" style="color: #60F0C0">Popunite
+							sva polja.</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Main Content -->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-10 mx-auto">
+				<p>Želite da budemo u kontaktu? Popunite niže formu i pošaljite
+					nam poruku i odgovorićemo Vam što je pre moguće!</p>
+				<form th:object="${travels}" th:action="@{/admin/travelsnew}"
+					method="post">
+					<input type="hidden" th:field="*{Travels_id}" />
+
+					<div class="control-group">
+						<div class="" style="color:#495057;font-size: 1.1em;opacity: .8;">
+							<label>Period putovanja</label>
+						</div>
+						<div
+								class="form-group col-xs-12 floating-label-form-group controls">
+							<label>Period putovanja: </label> <input type="number"
+																 class="form-control" placeholder="11256"
+																 th:field="*{Period}" id="Period" required
+																 data-validation-required-message="Unesite period putovanja.">
+							<p class="help-block text-danger"></p>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<div class="form-group floating-label-form-group controls">
+							<label>Tip puta: </label> <input type="text"
+															   class="form-control" placeholder="Overseas visitor"
+															   th:field="*{Passenger_type}" id="Passenger_type" required
+															   data-validation-required-message="Potreban je podatak.">
+							<p class="help-block text-danger"></p>
+						</div>
+
+					<div class="control-group">
+						<div class="form-group floating-label-form-group controls">
+							<label>Odlazak/Dolazak: </label> <input type="text"
+								class="form-control" placeholder="Arrival/Departure"
+								th:field="*{Direction}" id="Direction" required
+								data-validation-required-message="Potreban je podatak.">
+							<p class="help-block text-danger"></p>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="form-group floating-label-form-group controls">
+							<label>Destinacija: </label> <input type="text"
+								class="form-control" placeholder="Germany"
+								th:field="*{Country}" id="Country" required
+								data-validation-required-message="Molimo za unos podatka.">
+							<p class="help-block text-danger"></p>
+						</div>201377
+					</div>
+
+					<div class="control-group">
+							<div class="" style="color:#495057;font-size: 1.1em;opacity: .8;">
+								<label>Broj putnika</label>
+							</div>
+						<div
+							class="form-group col-xs-12 floating-label-form-group controls">
+							<label>Broj putnika: </label> <input type="number"
+								class="form-control" placeholder="11256"
+								th:field="*{Counter}" id="Counter" required
+								data-validation-required-message="Unesite broj putnika.">
+							<p class="help-block text-danger"></p>
+						</div>
+					</div>
+					<br>
+					<div id="success"></div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary"
+							id="sendMessageButton">Pošalji</button>
+						<!-- <button type="button" class="btn btn-danger" >Odustani</button> -->
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+
+	<div th:replace="replace/header :: footer" />
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="replace/header :: common-header" />
+
+<body>
+
+<div th:replace="replace/header :: navbar" />
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('/img/showantenna.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-heading">
+                    <h1 th:text="@{'Statistika za putovanja'}">Podaci o putu</h1>
+                    <h2 class="subheading">Informacije o putovanjima.</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <a class="btn btn-primary" th:href="@{'/travelslist'}">Nazad na listu</a>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 mx-auto">
+                <p><strong>Broj putnika u dolasku je: </strong><span th:text="${dolasci}"></span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 mx-auto">
+                <p><strong>Broj putnika u odlasku je:  </strong><span th:text="${odlasci}"></span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 mx-auto">
+                <p><strong>Ukupan broj putnika je: </strong><span th:text="${ukupno}"></span></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+
+<div th:replace="replace/header :: footer"/>
+
+</body>
+
+</html>

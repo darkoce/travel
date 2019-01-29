@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="replace/header :: common-header" />
+
+  <body>
+  
+  
+
+    <div th:replace="replace/header :: navbar" />
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('img/antennasList.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>Statistika</h1>
+              <span class="subheading">Lista putovanja.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="tabler">
+      
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <a class="btn btn-primary" th:href="@{'/travelsstats'}">Idi na statistiku</a>
+          <p style="color: #dc3545" class="animated fadeInDown">Pogledajte statistiku putovanja</p>
+          <hr/>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
+        </div>
+        
+        <div class="table-responsive" style="padding:20px;">
+        <table id="FlagsExport" class="table table-bordered table-hover table-striped"
+        style="background: #d4edda;">
+            <thead>
+            <tr>
+                <th>Period</th>
+                <th>Tip putnika</th>
+                <th>Pravac</th>
+                <th>Država</th>
+                <th>Broj putovanja</th>
+                <th>CRUD</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="travel: ${travels}">
+                <td th:text="${travel.Period}">201812</td>
+                <td th:text="${travel.Passenger_type}">visitor</td>
+                <td th:text="${travel.Direction}">Dolazak</td>
+                <td th:text="${travel.Country}">Alžir</td>
+                <td th:text="${travel.Counter}">18</td>
+                <td text="CRUD">
+					<a th:href="@{'/travels/show/'+${travel.Travels_id}}">Prikaži</a>
+				</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+      
+    </div>
+
+    <hr>
+
+    <div th:replace="replace/header :: footer"/>
+
+    <script type="text/javascript" th:src="@{/DataTables/datatables.min.js}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#FlagsExport').DataTable({
+               "pageLength": 30,
+                dom: 'Bfrtip',
+                buttons: ['copy','csv','excel','pdf']
+	            });
+        });
+    </script>
+
+  </body>
+
+</html>

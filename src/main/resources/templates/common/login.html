@@ -1,0 +1,73 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="common-header">
+
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Radio Planiranje</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Radio Planiranje - MTS</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <link th:href="@{/css/landing.css}" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
+</head>
+<body>
+
+    <div class="container">
+
+        <div id="landing-header">
+        <h1>Dobrodošli na stranicu za statistiku</h1>
+        <div class="alert alert-danger animated bounceInRight" role="alert" th:if="${param.error}">Pogrešan username ili password.</div>
+        <div class="alert alert-warning animated bounceInRight" role="alert" th:if="${param.logout}">Uspešno ste se izlogovali.</div>
+            <form th:action="@{/login}" method="post">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <label class="text-heading">Username</label>
+                        <input name="username" id="username"
+                               type="text" class="form-control" required="required" autofocus="autofocus"
+                               placeholder="Username"/>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <label class="text-heading">Password</label>
+                        <input name="password" id="password"
+                               type="password" class="form-control" required="required"/>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3" style="padding-top: 25px;">
+                            <button type="submit" class="btn btn-primary btn-lg">Log in</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <ul class="slideshow">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+
+
+</body>
+</html>

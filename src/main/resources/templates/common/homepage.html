@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+
+<head th:replace="replace/header :: common-header" />
+
+  <body>
+
+    <div th:replace="replace/header :: navbar" />
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('img/antenaHome.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Početna strana</h1>
+              <span class="subheading">Statistike putovanja</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto" th:each="notice : ${notices}">
+          <div class="post-preview">
+            <a href="#">
+              <h2 class="post-title" th:text="${notice.noticeTitle}">
+                Man must explore, and this is exploration at its greatest
+              </h2>
+            </a>
+            <p th:text="${notice.noticeNote}">neki text</p>
+            <p class="post-meta">Postavljeno 
+              <a href="#" th:text="${notice.createDate}"></a>
+              </p>
+          </div>
+          <hr>
+          
+          <hr>
+          <!-- <hr>
+          Pager
+          <div class="clearfix">
+            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+          </div> -->
+        </div>
+      </div>
+      
+      <!-- Pagination Bar -->
+	    <div>
+	        <div>
+	            <ul class='pagination pagination-centered'>
+	                <li th:class="${page.firstPage}?'disabled':''">
+	                <span th:if='${page.firstPage}'>← First</span>
+	                <a th:if='${not page.firstPage}' th:href='@{${page.url}(page=0,size=${page.size})}'>← First</a>
+	                </li>
+	                <li th:class="${page.hasPreviousPage}? '' : 'disabled'">
+	                <span th:if='${not page.hasPreviousPage}'>«</span>
+	                <a th:if='${page.hasPreviousPage}' th:href='@{${page.url}(page=${page.number-2},size=${page.size})}' title='Go to previous page'>«</a>
+	                </li>
+	                <li th:each='item : ${page.items}' th:class="${item.current}? 'active' : ''">
+	                <span th:if='${item.current}' th:text='${item.number}'>1</span>
+	                <a th:if='${not item.current}' th:href='@{${page.url}(page=${item.number-1},size=${page.size})}'><span th:text='${item.number}'>1</span></a>
+	                </li>
+	                <li th:class="${page.hasNextPage}? '' : 'disabled'">
+	                <span th:if='${not page.hasNextPage}'>»</span>
+	                <a th:if='${page.hasNextPage}' th:href='@{${page.url}(page=${page.number},size=${page.size})}' title='Go to next page'>»</a>
+	                </li>
+	                <li th:class="${page.lastPage}? 'disabled' : ''">
+	                <span th:if='${page.lastPage}'>Last →</span>
+	                <a th:if='${not page.lastPage}' th:href='@{${page.url}(page=${page.totalPages - 1},size=${page.size})}'>Last →</a>
+	                </li>
+	            </ul>
+	        </div>
+	    </div>
+      
+    </div>
+
+    <hr/>
+
+    <div th:replace="replace/header :: footer"/>
+
+  </body>
+
+</html>

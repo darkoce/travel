@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="replace/header :: common-header" />
+
+  <body>
+
+    <div th:replace="replace/header :: navbar" />
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('../img/antennasList.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>Admin Stranica za statistiku</h1>
+              <span class="subheading">Dodavanje, brisanje, modifikovanje statistike putovanja.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="tabler">
+    	<div class="container">
+    		<a class="btn btn-primary" th:href="@{'/admin/travelsnew'}">Dodaj putovanje</a>
+        </div>
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
+        </div>
+        
+        <div class="table-responsive" style="padding:20px;">
+        <table id="FlagsExport" class="table table-bordered table-hover table-striped"
+        style="background: #d4edda">
+            <thead>
+            <tr>
+                <th>Period putovanja</th>
+                <th>Tip putovanja</th>
+                <th>Odlazak/Dolazak</th>
+                <th>Destinacija</th>
+                <th>Broj putnika</th>
+                <th>CRUD</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="travel: ${travels}">
+                <td th:text="${travel.Period}">201511</td>
+                <td th:text="${travel.Passenger_type}">Overseas</td>
+                <td th:text="${travel.Direction}">Dolazak</td>
+                <td th:text="${travel.Country}">Angola</td>
+                <td th:text="${travel.Counter}">169</td>
+                <td text="CRUD">
+                <a th:href="@{'/admin/travels/show/'+${travel.Travels_id}}">prikaži|</a>
+                <a th:href="@{'/admin/travels/edit/'+${travel.Travels_id}}">modifikuj</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+      
+    </div>
+
+    <hr>
+
+    <div th:replace="replace/header :: footer"/>
+
+    <script type="text/javascript" th:src="@{/DataTables/datatables.min.js}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#FlagsExport').DataTable({
+                "pageLength": 30,
+                dom: 'Bfrtip',
+                buttons: ['copy','csv','excel','pdf']
+            });
+        });
+    </script>
+
+  </body>
+
+</html>
