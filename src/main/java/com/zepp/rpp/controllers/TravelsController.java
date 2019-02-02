@@ -64,6 +64,7 @@ private final TravelsService travelsService;
 	@PostMapping("/travelsstats")
 	public String travelsStatsPost(@ModelAttribute("helper") Helper helper, Model model) {
 		log.debug("vrednost starta je " + helper.getStart());
+		//prva kolona u bazi predstavlja datum u šablonu yyyymm
 		String start = helper.getStart().replace("-", "").substring(0, 6);
 		String finish = helper.getFinish().replace("-", "").substring(0, 6);
 		int dateStart = Integer.parseInt(start);
