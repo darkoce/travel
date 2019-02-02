@@ -1,23 +1,23 @@
 package com.zepp.rpp.domains;
 
 public class Helper {
-    private int start;
-    private int finish;
+    private String start;
+    private String finish;
     private String country;
 
-    public int getStart() {
+    public String getStart() {
         return start;
     }
 
-    public void setStart(int start) {
+    public void setStart(String start) {
         this.start = start;
     }
 
-    public int getFinish() {
+    public String getFinish() {
         return finish;
     }
 
-    public void setFinish(int finish) {
+    public void setFinish(String finish) {
         this.finish = finish;
     }
 

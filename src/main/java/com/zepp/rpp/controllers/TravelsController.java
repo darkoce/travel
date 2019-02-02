@@ -63,16 +63,18 @@ private final TravelsService travelsService;
 
 	@PostMapping("/travelsstats")
 	public String travelsStatsPost(@ModelAttribute("helper") Helper helper, Model model) {
+		log.debug("vrednost starta je " + helper.getStart());
+		String start = helper.getStart().replace("-", "").substring(0, 6);
+		String finish = helper.getFinish().replace("-", "").substring(0, 6);
+		int dateStart = Integer.parseInt(start);
+		int dateFinish = Integer.parseInt(finish);
 		//provera da li je početni period veći od krajnjeg, moglo je i u javascript-u u templejtu
-		if(helper.getStart() >= helper.getFinish()){
-			model.addAttribute("msg", "Početni period mora biti manji od krajnjeg.");
+		if(dateStart >= dateFinish){
+			model.addAttribute("msg", "Početni period mora biti pre krajnjeg.");
 			return "travels/travelsstats";
 		}
-		int start = helper.getStart();
-		log.debug("vrednost starta je " + helper.getStart());
-		List<Travels> list = travelsService.findByCountryAndPeriodNQ(helper.getCountry(), helper.getStart(), helper.getFinish());
-		System.out.println(list);
-		log.debug("helper.getCountry()", helper.getStart(), helper.getFinish());
+
+		List<Travels> list = travelsService.findByCountryAndPeriodNQ(helper.getCountry(), dateStart, dateFinish);
 		if(list.size() > 0){
 			log.debug("Lista nije prazna ima " + list.size());
 			int dolasci = 0;
@@ -88,7 +90,7 @@ private final TravelsService travelsService;
 			model.addAttribute("dolasci", dolasci);
 			model.addAttribute("odlasci", odlasci);
 			model.addAttribute("ukupno", ukupno);
-				return "travels/travelsStatsResult";
+			return "travels/travelsStatsResult";
 		}
 		model.addAttribute("msg", "Nema rezultata za vaš upit.");
 		return "travels/travelsstats";

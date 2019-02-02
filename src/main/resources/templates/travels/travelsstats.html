@@ -30,6 +30,7 @@
         <div class="alert alert-warning animated bounceInRight" role="alert" th:if="${msg}" th:text="${msg}">Nema rezultata</div>
         <form th:object="${helper}" th:action="@{/travelsstats}"
               method="post">
+            <!-- Testing
             <div class="control-group">
                 <div class="" style="color:#495057;font-size: 1.1em;opacity: .8;">
                     <label>početni period:</label>
@@ -58,6 +59,26 @@
                 </div>
             </div>
 
+            -->
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                    <label>Destinacija: </label> <input type="date"
+                                                        class="form-control" placeholder="Overseas visitor" th:name="country"
+                                                        th:field="${helper.start}" id="dateStart" required
+                                                        data-validation-required-message="Potreban je podatak.">
+                    <p class="help-block text-danger"></p>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                    <label>Destinacija: </label> <input type="date"
+                                                        class="form-control" placeholder="Overseas visitor" th:name="country"
+                                                        th:field="${helper.finish}" id="dateFinish" required
+                                                        data-validation-required-message="Potreban je podatak.">
+                    <p class="help-block text-danger"></p>
+                </div>
+            </div>
+
             <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
                     <label>Destinacija: </label> <input type="text"
@@ -67,6 +88,7 @@
                     <p class="help-block text-danger"></p>
                 </div>
             </div>
+
             <div id="success"></div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary"
